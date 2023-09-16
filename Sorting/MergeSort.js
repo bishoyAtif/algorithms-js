@@ -1,5 +1,5 @@
 function mergeSort(arr) {
-    if (arr.length == 1) {
+    if (arr.length <= 1) {
         return arr
     }
 
@@ -8,34 +8,16 @@ function mergeSort(arr) {
 }
 
 function mergeArrays(arrOne, arrTwo) {
-    let res = [], arrOnePtr = 0, arrTwoPtr = 0
-    while (arrOnePtr < arrOne.length || arrTwoPtr < arrTwo.length) {
-        if (arrOnePtr < arrOne.length && arrTwoPtr < arrTwo.length) {
-            if (arrOne[arrOnePtr] < arrTwo[arrTwoPtr]) {
-                res.push(arrOne[arrOnePtr])
-                arrOnePtr++
-                continue
-            } else {
-                res.push(arrTwo[arrTwoPtr])
-                arrTwoPtr++
-                continue
-            }
-        }
-
-        if (arrOnePtr < arrOne.length) {
-            res.push(arrOne[arrOnePtr])
-            arrOnePtr++
-            continue
-        }
-
-        if (arrTwoPtr < arrTwo.length) {
-            res.push(arrTwo[arrTwoPtr])
-            arrTwoPtr++
-            continue
+    let res = []
+    while (arrOne.length && arrTwo.length) {
+        if (arrOne[0] < arrTwo[0]) {
+            res.push(arrOne.shift())
+        } else {
+            res.push(arrTwo.shift())
         }
     }
 
-    return res
+    return [...res, ...arrOne, ...arrTwo]
 }
 
 console.log(mergeSort([2, 1, 4, 6, 8, 9]))
