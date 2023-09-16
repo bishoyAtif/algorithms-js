@@ -3,8 +3,13 @@ function quickSort(arr) {
         return arr
     }
 
-    let pivot = arr[0], left = [], right = []
-    for (let i = 1; i < arr.length; i++) {
+    const pivotIndex = Math.floor(Math.random() * arr.length)
+    let pivot = arr[pivotIndex], left = [], right = []
+    for (let i = 0; i < arr.length; i++) {
+        if (i == pivotIndex) {
+            continue
+        }
+
         if (arr[i] <= pivot) {
             left.push(arr[i])
         } else {
